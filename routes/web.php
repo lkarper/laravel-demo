@@ -17,6 +17,8 @@ Route::get('/', fn() => "Welcome");
 
 Route::get('/welcome', fn() => view('welcome'));
 
+Route::get('/contact', fn() => view('contact'));
+
 Route::get('/test', fn() => view('test'));
 
 Route::get('/query', function() {
