@@ -19,6 +19,17 @@ Route::get('/welcome', fn() => view('welcome'));
 
 Route::get('/contact', fn() => view('contact'));
 
+Route::get('/about', function () {
+    
+    return view('about', [
+        'articles' => App\Models\Article::all(),
+    ]);
+});
+
+Route::get('/articles', [App\Http\Controllers\ArticlesController::class, 'index']);
+
+Route::get('/articles/{article}', [App\Http\Controllers\ArticlesController::class, 'show']);
+
 Route::get('/test', fn() => view('test'));
 
 Route::get('/query', function() {

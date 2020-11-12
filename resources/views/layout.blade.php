@@ -21,7 +21,12 @@
         </style>
     </head>
     <body class="antialiased">
+        <h1>My website</h1>
+
         @yield ('content')
         @yield ('contact')
+        @yield ('about')
+        @yield ('articles.show')
+        @yield ('articles.index')
     </body>
 </html>
