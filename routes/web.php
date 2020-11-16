@@ -27,8 +27,11 @@ Route::get('/about', function () {
 });
 
 Route::get('/articles', [App\Http\Controllers\ArticlesController::class, 'index']);
-
+Route::post('/articles', [App\Http\Controllers\ArticlesController::class, 'store']);
+Route::get('/articles/create', [App\Http\Controllers\ArticlesController::class, 'create']);
 Route::get('/articles/{article}', [App\Http\Controllers\ArticlesController::class, 'show']);
+
+
 
 Route::get('/test', fn() => view('test'));
 

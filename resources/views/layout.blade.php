@@ -19,6 +19,7 @@
                 font-family: 'Nunito';
             }
         </style>
+        @yield('head')
     </head>
     <body class="antialiased">
         <h1>My website</h1>
@@ -28,5 +29,6 @@
         @yield ('about')
         @yield ('articles.show')
         @yield ('articles.index')
+        @yield ('articles.create')
     </body>
 </html>
