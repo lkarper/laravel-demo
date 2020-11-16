@@ -1,9 +1,15 @@
 @extends ('layout')
 
 @section ('articles.index')
-    @foreach ($articles as $article)
-        <h2><a href="{{ $article->id }}">{{ $article->title }}</h2>
-        {!! $article->excerpt !!}
-    @endforeach
+    <div class="container">
+        @foreach ($articles as $article)
+            <div class="content">
+                <div class="title">
+                    <h2><a href="{{ $article->path() }}">{{ $article->title }}</h2>
+                </div>
+                {!! $article->excerpt !!}
+            </div>
+        @endforeach
+    </div>
     
 @endsection
