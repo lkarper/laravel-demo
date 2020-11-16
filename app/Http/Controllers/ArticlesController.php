@@ -13,9 +13,8 @@ class ArticlesController extends Controller
         return view('articles.index', ['articles' => $articles]);
     }
 
-    public function show($articleId) {
+    public function show(Article $article) {
         // Show a single resource
-        $article = Article::find($articleId);
         return view('articles.show', ['article' => $article]);
     }
 
@@ -27,48 +26,33 @@ class ArticlesController extends Controller
     public function store() {
         // Persist the new resource
 
-        request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-        ]);
+        Article::create($this->validateArticle());
 
-        $article = new Article();
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
         return redirect('/articles');
     }
 
-    public function edit($id) {
-        // Shows a view to edit an existing resource
-
-        $article = Article::find($id);
-
+    public function edit(Article $article) {
+        // Shows a view to edit an existing resource 
         return view('articles.edit', ['article' => $article]);
     }
 
-    public function update($id) {
+    public function update(Article $article) {
         // Persist an edited resource
-
-        request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-        ]);
+        $article->update($this->validateArticle());
         
-        $article = Article::find($id);
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
-
         return redirect('/articles/' . $article->id);
     }
 
     public function destroy() {
         // Delete the resource
 
+    }
+
+    public function validateArticle() {
+        return request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required',
+        ]);
     }
 }
