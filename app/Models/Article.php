@@ -16,4 +16,12 @@ class Article extends Model
         // returns /articles/:id
         return route('articles.show', $this);
     }
+
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
 }
